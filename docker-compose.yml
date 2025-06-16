@@ -1,0 +1,29 @@
+x-logging:
+  &logging
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "10m"
+      max-file: "3"
+
+x-deploy:
+  &deploy
+  deploy:
+    replicas: 1
+    update_config:
+      parallelism: 2
+      delay: "10s"
+    restart_policy:
+      condition: on-failure
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    networks:
+      - temp
+    <<: [*logging, *deploy]
+
+networks:
+  temp:
