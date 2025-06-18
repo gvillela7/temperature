@@ -29,6 +29,22 @@ docker compose up -d --build
 	"message": "zipcode not found."
   }
  ```
+## Cloud Run
+```
+curl -X GET https://temperature-v6fwv7dugq-uc.a.run.app/v1/temperature?cep=20541380
+
+ Response: 200
+ {
+	"StatusCode": 200,
+	"message": "success",
+	"data": {
+		"state": "Rio+de+Janeiro",
+		"temp_c": 22.4,
+		"temp_f": 72.32,
+		"temp_k": 295.55
+	}
+ }
+```
 
 ## Test
 ```
